@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-04 05:54:17
- * @ Modified on: 2020-06-22 11:54:22
+ * @ Modified on: 2020-06-22 12:32:09
  * 
  * @version 1.5
  */
@@ -432,7 +432,7 @@ export class LinkedMap extends Map
     {
         for (let map of maps)
         {
-            if (map.constructor.name != "LinkedMap")
+            if (!Argument.isOf(map, "LinkedMap"))
             {
                 throw new ObjectCastException(this.PREFIX_EXCEPTION + map.constructor.name + " is not an instance of LinkedMap");
             }
