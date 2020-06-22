@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-04 05:54:17
- * @ Modified on: 2020-06-22 11:25:08
+ * @ Modified on: 2020-06-22 11:27:27
  * 
  * @version 1.5
  */
@@ -131,7 +131,7 @@ class EntryIterable implements Iterable<Entry<String, Object>>
  * Public constants for type of inversement of the map.
  * 
  * @class MapType
- * @version 1.3
+ * @version 1.0
  * @since 1.0
  */
 export abstract class MapType
