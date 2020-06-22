@@ -1,5 +1,7 @@
 # Support-typescript
-Helper
+Helper Utilities
+
+> Check the WiKi for more informations <a href="https://github.com/MSay2/Support-typescript/wiki">WiKi</a>
 
 # License
 
