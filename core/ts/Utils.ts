@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-06-01 10:01:09
- * @ Modified on: 2020-06-22 11:15:31
+ * @ Modified on: 2020-06-22 11:16:32
  * 
  * @version 1.3
  */
 
 /**
- * The StringUtils class is a utilies for String argument
+ * The StringUtils class is a utility for String argument
  * 
  * @class StringUtils
  * @version 1.3
