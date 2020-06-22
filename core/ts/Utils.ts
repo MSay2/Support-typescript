@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-06-01 10:01:09
- * @ Modified on: 2020-06-22 11:16:32
+ * @ Modified on: 2020-06-22 17:23:34
  * 
  * @version 1.3
  */
@@ -16,7 +16,7 @@
 export class StringUtils
 {
     /**
-     * Check if the value is a String type
+     * Check if the value is null or empty
      * 
      * @param value value to check
      * @returns return true if the value is a String type
