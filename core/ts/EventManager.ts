@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-21 10:01:08
- * @ Modified on: 2020-06-22 11:17:46
+ * @ Modified on: 2020-06-23 18:17:09
  */
 
 /**
@@ -16,7 +16,7 @@ export class EventManager
     /**
      * Clear the completely the event
      * 
-     * @param event the event returned by the (#method document.addEventListener()) and (#method document.removeEventListener()) methods
+     * @param event the event returned by the (#method document.addEventListener) and (#method document.removeEventListener) methods
      * @type {void}
      * @since 1.0
      */
