@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-06-22 11:21:58
+ * @ Modified on: 2020-06-23 18:16:48
  * 
  * @version 1.2
  */
@@ -124,7 +124,7 @@ export interface Message
 }
 
 /**
- * Send Message interface by the (#method IMessage.obtain()) method.
+ * Send Message interface by the (#method IMessage.obtain method.
  * 
  * @class IMessage
  * @version 1.0
@@ -156,10 +156,10 @@ export class IMessage implements Message
 
 /**
  * The Callback interface allows to you have a return of event
- * with the (#method putComponent()), 
- * (#method sendMessage()), 
- * (#method putComponentDelayed()), 
- * (#method sendMessageDelayed()) methods.
+ * with the (#method putComponent), 
+ * (#method sendMessage), 
+ * (#method putComponentDelayed), 
+ * (#method sendMessageDelayed) methods.
  * 
  * @class Callback
  * @version 1.0

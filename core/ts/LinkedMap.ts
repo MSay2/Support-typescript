@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-04 05:54:17
- * @ Modified on: 2020-06-22 12:32:09
+ * @ Modified on: 2020-06-23 18:18:33
  * 
  * @version 1.5
  */
@@ -71,7 +71,7 @@ abstract class Entry<K, V>
  * The EntryIterable class is a mean to reiterate the entries to the map.
  * 
  * It allows to you obtain eachs values and eachs keys of eachs entries of the map
- * with its respectives methods (#method Entry.getKey()) and (#method Entry.getValue()).
+ * with its respectives methods (#method Entry.getKey) and (#method Entry.getValue).
  * 
  * @class EntryIterable
  * @implements {Iterable}
@@ -212,7 +212,7 @@ export abstract class Map
     /**
      * Add a specific value onnly if the value is not in the map and associates with the specified key in this map
      * 
-     * @todo This is use the default implementation of (#method Map.add()) 
+     * @todo This is use the default implementation of (#method Map.add)
      * 
      * @param key key with which the specified value is to be associated
      * @param value value to be associated with the specified key
@@ -228,7 +228,7 @@ export abstract class Map
     /**
      * Add all datas of one map in the current map
      * 
-     * @todo This is use the default implementation of (#method Map.add())
+     * @todo This is use the default implementation of (#method Map.add)
      * 
      * @param maps The newests maps to add
      * @type {void}
