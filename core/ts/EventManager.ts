@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-21 10:01:08
- * @ Modified on: 2020-06-23 18:17:09
+ * @ Modified on: 2020-06-24 10:14:20
  */
 
 /**
@@ -20,7 +20,7 @@ export class EventManager
      * @type {void}
      * @since 1.0
      */
-    public static clear(event:Event):void
+    public static stop(event:Event):void
     {
         event.stopImmediatePropagation();
         event.preventDefault();
