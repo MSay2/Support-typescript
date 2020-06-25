@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-06-25 08:54:36
+ * @ Modified on: 2020-06-25 09:53:46
  * 
  * @version 1.3
  * 
@@ -111,7 +111,7 @@ class SnackbarManager
 
     private SHORT_DURATION_MS:number = 1500;
     private LONG_DURATION_MS:number = 2750;
-    private DEFAULT_DURATION:number = 0;
+    private DEFAULT_DURATION:number = this.SHORT_DURATION_MS;
 
     private constructor()
     {
