@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-06-25 08:38:08
+ * @ Modified on: 2020-06-25 08:40:31
  * 
  * @version 1.3
  * 
@@ -280,7 +280,6 @@ class SnackbarManager
         else
         {
             console.warn("The duration connot be than 250 millisecondes. The default duration is used.");
-            durationMs = this.DEFAULT_DURATION;
         }
 
         this.component.removeComponent(record);
