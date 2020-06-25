@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-06-24 16:06:50
+ * @ Modified on: 2020-06-25 08:38:08
  * 
  * @version 1.3
  * 
@@ -36,55 +36,25 @@ import { OnClickListener } from "../helper/OnClickListener.js";
 import { RegularExpressions } from "../helper/RegularExpressions.js";
 import { Scrollable } from "../helper/Scrollable.js";
 
-/**
- * The DismissEvent enumeration is for sending the good event associated on the disappear of snack-bar
- * 
- * @enum DismissEvent
- * @version 1.2
- * @since 1.0
- */
 enum DismissEvent
 {
-    /**
-     * Code for get the event to disappear on click event
-     * 
-     * @constant DISMISS_EVENT_ACTION
-     * @type {number}
-     * @since 1.2
-     */
     DISMISS_EVENT_ACTION = 1,
-
-    /**
-     * Code for get the event to disappear on time out
-     * 
-     * @constant DISMISS_EVENT_TIMEOUT
-     * @type {number}
-     * @since 1.2
-     */
     DISMISS_EVENT_TIMEOUT = 2,
-
-    /**
-     * Code for get the event to disappear at called (#method Snackbar.dismiss) method
-     * 
-     * @constant DISMISS_EVENT_MANUAL
-     * @type {number}
-     * @since 1.2
-     */
     DISMISS_EVENT_MANUAL = 3,
-
-    /**
-     * Code for get the event to disappear at called (#method Snackbar.show) serval times
-     * 
-     * @type {number}
-     * @since 1.2
-     */
     DISMISS_EVENT_CONSECUTIVE = 4
+}
+
+enum Duration
+{
+    LENGTH_LONG = -1,
+    LENGTH_SHORT = -2,
+    LENGTH_INDEFINITE = -3
 }
 
 /**
  * The Callbbakc interface is a event listener for Snackbar
  * 
- * (#method Callback.onSown) Corresponding at moment the snack-bar is completely visible.
+ * (#method Callback.onSown) corresponding at moment the snack-bar is completely visible.
  * (#method Callback.onDismissed) corresponding at thmoment the snack-bar is completely dismissed.
  * 
  * @interface Callback
@@ -111,50 +81,6 @@ export interface Callback
     onDismissed(event:number):void;
 }
 
-/**
- * The Duration enumeration is for init the pre-installed duration.
- * 
- * @enum Duration
- * @version 1.0
- * @since 1.0
- */
-enum Duration
-{
-    /**
-     * Code for init a long duration
-     * 
-     * @constant LENGTH_LONG
-     * @type {number}
-     * @since 1.0
-     */
-    LENGTH_LONG = -1,
-
-    /**
-     * Code for init a short duration
-     * 
-     * @constant LENGTH_SHORT
-     * @type {number}
-     * @since 1.0
-     */
-    LENGTH_SHORT = -2,
-    
-    /**
-     * Code for init a infinite duration
-     * 
-     * @constant LENGTH_INDEFINITE
-     * @type {number}
-     * @since 1.0
-     */
-    LENGTH_INDEFINITE = -3
-}
-
-/**
- * The SnackbarRecord class contain it each snack-bar token sending.
- * 
- * @class SnackbarRecord
- * @version 1.0
- * @since 1.0
- */
 class SnackbarRecord
 {
     callback:Callback;
@@ -172,15 +98,6 @@ class SnackbarRecord
     }
 }
 
-/**
- * SnackbarManager class is for manage the snack-bar (show, animation, states and more).
- * 
- * A components manager is used for initialize snack-bars as tokens to have a structured appearance control.
- * 
- * @class SnackbarManager
- * @version 1.0
- * @since 1.0
- */
 class SnackbarManager
 {
     private component:Component;
@@ -371,13 +288,6 @@ class SnackbarManager
     }
 }
 
-/**
- * A base for init all event.
- * 
- * @class BaseSnackbar
- * @version 1.3
- * @since 1.0
- */
 abstract class BaseSnackbar<B extends BaseSnackbar<B>>
 {
     private parent:HTMLElement;
@@ -802,13 +712,6 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 }
 
-/**
- * Create the ripple.
- * 
- * @class BaseSelectable
- * @version 1.0
- * @since 1.3
- */
 class BaseSelectable
 {
     private circle:HTMLElement;
@@ -941,13 +844,6 @@ class BaseSelectable
     }
 }
 
-/**
- * Init hthe Ripple animation on the button.
- * 
- * @class Selectable
- * @version 1.0
- * @since 1.3
- */
 class Selectable extends BaseSelectable
 {
     private constructor(view:HTMLElement)
