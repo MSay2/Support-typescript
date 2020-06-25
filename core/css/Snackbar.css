@@ -1,0 +1,249 @@
+/**
+ * @ Author: Yoann Meclot. MSay2
+ * @ Created on: 2020-05-27 11:02:45
+ * @ Modified on: 2020-06-24 14:57:39
+ * 
+ * @version 1.0
+ */
+
+/**
+   Copyright (c) 2020 MSay2 - Support-typescript
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+
+@font-face 
+{
+  font-family: 'Roboto Regular';
+  src: local('../fonts/RobotoMono-Regular'), url('../fonts/RobotoMono-Regular.ttf') format('ttf');
+}
+
+@font-face
+{
+    font-family: 'Roboto Light';
+    src: local('../fonts/RobotoMono-Light'), url('../fonts/RobotoMono-Light.ttf') format('ttf');
+}
+
+span.snackbar-container {
+    position: fixed;
+    display: flex;
+    height: fit-content;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    bottom: 0;
+    left: 0;
+    padding: 8;
+    z-index: 999999;
+    transition-property: transform;
+    transition-duration: 0.250s;
+    transition-timing-function: ease-in-out;
+    animation: animateSnackbar 0.250s ease-in-out;
+    
+    -webkit-transition-property: transform;
+    -webkit-transition-duration: 0.250s;
+    -webkit-transition-timing-function: ease-in-out;
+    -webkit-animation: animateSnackbar 0.250s ease-in-out;
+    -moz-transition-property: transform;
+    -moz-transition-duration: 0.250s;
+    -moz-transition-timing-function: ease-in-out;
+    -moz-animation: animateSnackbar 0.250s ease-in-out;
+}
+
+span.snackbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #333333;
+    height: fit-content;
+    min-height: 48px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 2px 1px 8px -2px rgba(0, 0, 0, 0.7);
+}
+
+p.snackbar-message {
+    margin: 11 16;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: "Roboto Regular";
+    width: fit-content;
+    line-height: 24px;
+    letter-spacing: 0.25;
+    color: #FFFFFF;
+    overflow: hidden;
+    display: -webkit-box;
+    justify-content: start;
+    align-items: center;
+    cursor: default;
+    transition-property: opacity;
+    transition-duration: 0.250s;
+    transition-delay: 0.070s;
+    transition-timing-function: ease-in-out;
+    animation: animateMessageView 0.250s ease-in-out 0.070s;
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    -webkit-user-select: none;
+    -webkit-transition-property: opacity;
+    -webkit-transition-duration: 0.250s;
+    -webkit-transition-delay: 0.070s;
+    -webkit-transition-timing-function: ease-in-out;
+    -webkit-animation: animateMessageView 0.250s ease-in-out 0.070s;
+    -moz-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -moz-transition-property: opacity;
+    -moz-transition-duration: 0.250s;
+    -moz-transition-delay: 0.070s;
+    -moz-transition-timing-function: ease-in-out;
+    -moz-animation: animateMessageView 0.250s ease-in-out 0.070s;
+}
+
+button.snackbar-button {
+    position: relative;
+    height: fit-content;
+    min-width: 64px;
+    min-height: 36px;
+    margin-left: 0;
+    margin-right: 8;
+    padding-left: 8;
+    padding-right: 8;
+    overflow: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Roboto Light";
+    text-align: center;
+    letter-spacing: 1.25;
+    outline: none;
+    border: none;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    color: #A87078;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0);
+    transition-property: background, opacity;
+    transition-duration: 0.3s, 0.250s;
+    transition-delay: 0s, 0.070s;
+    transition-timing-function: cubic-bezier(0.32, 0.29, 0.17, 1), ease-in-out;
+    animation: animateMessageView 0.250s ease-in-out 0.070s;
+
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transition-property: background, opacity;
+    -webkit-transition-duration: 0.3s, 0.250s;
+    -webkit-transition-delay: 0s, 0.070s;
+    -webkit-transition-timing-function: cubic-bezier(0.32, 0.29, 0.17, 1), ease-in-out;
+    -webkit-animation: animateMessageView 0.250s ease-in-out 0.070s;
+    -moz-user-select: none;
+    -moz-transition-property: background, opacity;
+    -moz-transition-duration: 0.3s, 0.250s;
+    -moz-transition-delay: 0s, 0.070s;
+    -moz-transition-timing-function: cubic-bezier(0.32, 0.29, 0.17, 1), ease-in-out;
+    -moz-animation: animateMessageView 0.250s ease-in-out 0.070s;
+}
+
+.snackbar-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.snackbar-button-selectable {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(1);
+    transition-property: opacity;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+    animation: selectableButtonAnimation 0.5s ease-in-out;
+
+    -webkit-transform: scale(1);
+    -webkit-transition-property: opacity;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-in-out;
+    -webkit-animation: selectableButtonAnimation 0.5s ease-in-out;
+    -moz-transform: scale(1);
+    -moz-transition-property: opacity;
+    -moz-transition-duration: 0.4s;
+    -moz-transition-timing-function: ease-in-out;
+    -moz-animation: selectableButtonAnimation 0.5s ease-in-out;
+}
+
+/**
+ * Create this container for the text of button 
+ * because the `overflow` propertie with `hidden` value remove the inner paddings of his children's.
+ * 
+ * That does not make sense (OVERFLOW (OO VVEERR FFLLOOWW)) :/ WHY DOES IT AFFECT THE INNER !!
+*/
+p.snackbar-button-container-message
+{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 36px;
+    max-height: 36px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    max-width: 120;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes animateSnackbar {
+    from {
+        transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        -moz-transform: translateY(0%);
+    }
+}
+
+@keyframes animateMessageView {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes selectableButtonAnimation {
+    from {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+    }
+}
+
+@media(max-width: 996px)
+{
+    .snackbar-button:hover {
+        background: rgba(255, 255, 255, 0.0);
+    }
+}
