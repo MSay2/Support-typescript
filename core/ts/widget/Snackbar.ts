@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-06-25 08:40:31
+ * @ Modified on: 2020-06-25 08:43:01
  * 
  * @version 1.3
  * 
@@ -535,6 +535,8 @@ export class Snackbar extends BaseSnackbar<Snackbar>
 
     /**
      * Default constructor
+     * 
+     * Init a new token snack-bar
      * 
      * @param parent primary parent (example document.body)
      * @since 1.0
