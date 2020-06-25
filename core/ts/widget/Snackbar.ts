@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-06-25 08:43:01
+ * @ Modified on: 2020-06-25 08:54:36
  * 
  * @version 1.3
  * 
@@ -55,7 +55,7 @@ enum Duration
  * The Callbbakc interface is a event listener for Snackbar
  * 
  * (#method Callback.onSown) corresponding at moment the snack-bar is completely visible.
- * (#method Callback.onDismissed) corresponding at thmoment the snack-bar is completely dismissed.
+ * (#method Callback.onDismissed) corresponding at moment the snack-bar is completely dismissed.
  * 
  * @interface Callback
  * @version 1.0
@@ -105,16 +105,13 @@ class SnackbarManager
     private currentSnackbar:SnackbarRecord;
     private nextSnackbar:SnackbarRecord;
 
-    private duration:number;
-
     private static snackbarManager:SnackbarManager;
 
     private MSG_TIMEOUT = 0;
 
     private SHORT_DURATION_MS:number = 1500;
     private LONG_DURATION_MS:number = 2750;
-
-    private DEFAULT_DURATION:number = this.SHORT_DURATION_MS;
+    private DEFAULT_DURATION:number = 0;
 
     private constructor()
     {
