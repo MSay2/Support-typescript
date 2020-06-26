@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-06-25 09:53:46
+ * @ Modified on: 2020-06-26 17:11:29
  * 
  * @version 1.3
  * 
@@ -52,9 +52,9 @@ enum Duration
 }
 
 /**
- * The Callbbakc interface is a event listener for Snackbar
+ * The Callback interface is a event listener for Snackbar
  * 
- * (#method Callback.onSown) corresponding at moment the snack-bar is completely visible.
+ * (#method Callback.onShown) corresponding at moment the snack-bar is completely visible.
  * (#method Callback.onDismissed) corresponding at moment the snack-bar is completely dismissed.
  * 
  * @interface Callback

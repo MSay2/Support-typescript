@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-04 05:54:17
- * @ Modified on: 2020-06-24 14:58:41
+ * @ Modified on: 2020-06-26 17:06:35
  * 
  * @version 1.5
  */
@@ -417,7 +417,7 @@ export class LinkedMap extends Map
             throw new MaximumCapacityException(this.PREFIX_EXCEPTION + "You have reached the maximum capacity of elements of the map. You have not permission to add a new value in the map.");
         }
         
-        if ((typeof key) != "string")
+        if (!Argument.isString(key))
         {
             throw new ObjectCastException(this.PREFIX_EXCEPTION + "The key must always be a string.");
         }

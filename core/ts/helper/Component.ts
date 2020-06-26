@@ -1,9 +1,9 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-06-24 14:59:24
+ * @ Modified on: 2020-06-26 17:18:14
  * 
- * @version 1.2
+ * @version 1.3
  */
 
 /**
@@ -49,6 +49,10 @@ abstract class BaseComponent
      * Put the specified component in the list of components
      * and delete the added specified component after a duration 
      * 
+     * @deprecated this method is deprecated because you can't get your object in event listener.
+     * This method is not useful.
+     * 
+     * Use (#method Component.sendMessage) method, or use (#method Component.sendMessageDelayed)
      * @param component the specified component
      * @param delayMs specified duration in milliseconds
      * @type {void}
