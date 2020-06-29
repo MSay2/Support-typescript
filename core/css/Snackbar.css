@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 11:02:45
- * @ Modified on: 2020-06-24 14:57:39
+ * @ Modified on: 2020-06-29 22:00:10
  * 
  * @version 1.0
  */
@@ -40,7 +40,7 @@ span.snackbar-container {
     height: fit-content;
     box-sizing: border-box;
     width: 100%;
-    max-width: 480px;
+    max-width: 380px;
     bottom: 0;
     left: 0;
     padding: 8;
