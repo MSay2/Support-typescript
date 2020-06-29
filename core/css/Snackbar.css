@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 11:02:45
- * @ Modified on: 2020-06-29 22:00:10
+ * @ Modified on: 2020-06-29 22:12:55
  * 
  * @version 1.0
  */
@@ -113,7 +113,7 @@ p.snackbar-message {
 button.snackbar-button {
     position: relative;
     height: fit-content;
-    min-width: 64px;
+    min-width: 48px;
     min-height: 36px;
     margin-left: 0;
     margin-right: 8;
@@ -243,6 +243,10 @@ p.snackbar-button-container-message
 
 @media(max-width: 996px)
 {
+    span.snackbar-container {
+        max-width: 480px;
+    }
+    
     .snackbar-button:hover {
         background: rgba(255, 255, 255, 0.0);
     }
