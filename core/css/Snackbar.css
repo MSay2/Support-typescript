@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 11:02:45
- * @ Modified on: 2020-06-29 22:12:55
+ * @ Modified on: 2020-06-30 19:10:27
  * 
  * @version 1.0
  */
@@ -200,6 +200,7 @@ p.snackbar-button-container-message
     margin-block-end: 0;
     margin-block-start: 0;
     max-width: 120;
+    cursor: pointer;
 
     -webkit-user-select: none;
     -moz-user-select: none;
