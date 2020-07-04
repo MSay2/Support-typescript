@@ -1,9 +1,9 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-06-01 10:01:09
- * @ Modified on: 2020-06-24 14:58:09
+ * @ Modified on: 2020-07-04 23:13:24
  * 
- * @version 1.3
+ * @version 1.4
  */
 
 /**
@@ -26,7 +26,7 @@
  * The StringUtils class is a utility for String argument
  * 
  * @class StringUtils
- * @version 1.3
+ * @version 1.4
  * @since 1.0
  */
 export class StringUtils
@@ -42,6 +42,38 @@ export class StringUtils
     public static isEmpty(value:String):boolean
     {
         return value == null || value.trim().length == 0;
+    }
+
+    /**
+     * Check if the argument contain the specified value 
+     * 
+     * @param arg the argument to verify
+     * @param value the value to check
+     * @returns return true is the argument contain the specified value
+     * @type {boolean}
+     * @since 1.4
+     */
+    public static contains(arg:string, value:string):boolean
+    {
+        return arg.indexOf(value) >- 1;
+    }
+
+    /**
+     * Check if the arguments its equals
+     * 
+     * @param arg1 the argument to check
+     * @param arg2 other argument to check
+     * @returns return true if the arguments its equals
+     * @type {boolean}
+     * @since 1.4
+     */
+    public static equals(arg1:string, arg2:string):boolean
+    {
+        if (arg1 == null || arg2 == null)
+        {
+            return false;
+        }
+        return arg1 == arg2;
     }
 
     /**
