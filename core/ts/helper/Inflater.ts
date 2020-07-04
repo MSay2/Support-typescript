@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-01 23:48:31
- * @ Modified on: 2020-06-24 14:58:58
+ * @ Modified on: 2020-06-29 22:02:03
  * 
  * @version 1.3
  */
@@ -32,7 +32,7 @@ import { Callable } from "./Callable.js";
  * 
  * @class Callback
  * @version 1.0
- * @since 1.3
+ * @since 1.4
  */
 export interface Callback
 {
@@ -49,7 +49,7 @@ export interface Callback
  * The Inflater class is a tool for inflated your layout.
  * 
  * @class Inflater
- * @version 1.3
+ * @version 1.4
  * @since 1.0
  */
 export class Inflater
@@ -131,17 +131,20 @@ export class Inflater
                 throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "The `layout` attribute should not be empty.");
             }
             let url:URL = new URL(path, window.location.href);
-            for (let entry of this.params.entries())
+            if (this.params != null)
             {
-                if (entry.getKey() == null || entry.getValue() == null)
+                for (let entry of this.params.entries())
                 {
-                    throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "Your params contain a null key or value. All keys and values must be non-null");
+                    if (entry.getKey() == null || entry.getValue() == null)
+                    {
+                        throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "Your params contain a null key or value. All keys and values must be non-null");
+                    }
+                    if (!Argument.isPrimitive(entry.getValue()))
+                    {
+                        throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "You can append only primitive values params [Float, Integer, Boolean, String] but one or more values is not primitives values.");
+                    }
+                    url.searchParams.append(encodeURIComponent((<string>entry.getKey())), encodeURIComponent((<string>entry.getValue())));
                 }
-                if (!Argument.isPrimitive(entry.getValue()))
-                {
-                    throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "You can append only primitive values params [Float, Integer, Boolean, String] but one or more values is not primitives values.");
-                }
-                url.searchParams.append(encodeURIComponent((<string>entry.getKey())), encodeURIComponent((<string>entry.getValue())));
             }
 
             if (Callable.requireNonNull(this.callback, "onFinishInflater"))

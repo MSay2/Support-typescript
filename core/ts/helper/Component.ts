@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-06-26 17:18:14
+ * @ Modified on: 2020-06-26 17:23:14
  * 
  * @version 1.3
  */
@@ -31,7 +31,7 @@ import {Callable} from "./Callable.js";
  * and delete this components with a associated event listener.
  * 
  * @class BaseComponent
- * @version 1.2
+ * @version 1.3
  * @since 1.0
  */
 abstract class BaseComponent

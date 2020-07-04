@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 11:02:45
- * @ Modified on: 2020-06-24 14:57:39
+ * @ Modified on: 2020-06-30 19:10:27
  * 
  * @version 1.0
  */
@@ -40,7 +40,7 @@ span.snackbar-container {
     height: fit-content;
     box-sizing: border-box;
     width: 100%;
-    max-width: 480px;
+    max-width: 380px;
     bottom: 0;
     left: 0;
     padding: 8;
@@ -113,7 +113,7 @@ p.snackbar-message {
 button.snackbar-button {
     position: relative;
     height: fit-content;
-    min-width: 64px;
+    min-width: 48px;
     min-height: 36px;
     margin-left: 0;
     margin-right: 8;
@@ -200,6 +200,7 @@ p.snackbar-button-container-message
     margin-block-end: 0;
     margin-block-start: 0;
     max-width: 120;
+    cursor: pointer;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -243,6 +244,10 @@ p.snackbar-button-container-message
 
 @media(max-width: 996px)
 {
+    span.snackbar-container {
+        max-width: 480px;
+    }
+    
     .snackbar-button:hover {
         background: rgba(255, 255, 255, 0.0);
     }
