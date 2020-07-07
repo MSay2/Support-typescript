@@ -1,9 +1,9 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-07-04 23:46:42
+ * @ Modified on: 2020-07-07 20:50:41
  * 
- * @version 1.3
+ * @version 1.4
  * 
  * The project Snackbar is support of compatibility for web.
  * 
@@ -140,7 +140,9 @@ class SnackbarManager
         if (this.isCurrentSnackbarLocked(callback))
         {
             this.currentSnackbar.duration = duration;
+            this.component.removeComponentAndCallback(this.currentSnackbar);
             this.scheduleTimeoutLocked(this.currentSnackbar);
+            
             return;
         }
         else if (this.isNextSnackbarLocked(callback))
@@ -220,7 +222,7 @@ class SnackbarManager
         const callback:Callback = record.callback;
         if (callback != null)
         {
-            this.component.removeComponent(record);
+            this.component.removeComponentAndCallback(record);
             callback.onDismissed(event);
             return true;
         }
@@ -279,7 +281,7 @@ class SnackbarManager
             console.warn("The duration connot be than 250 millisecondes. The default duration is used.");
         }
 
-        this.component.removeComponent(record);
+        this.component.removeComponentAndCallback(record);
         this.component.sendMessageDelayed(IMessage.obtain(record, this.MSG_TIMEOUT, 0, 0), durationMs);
     }
 }

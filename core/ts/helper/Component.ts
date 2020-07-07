@@ -1,9 +1,9 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-07-04 23:44:05
+ * @ Modified on: 2020-07-07 20:48:47
  * 
- * @version 1.3
+ * @version 1.4
  */
 
 /**
@@ -31,7 +31,7 @@ import {Callable} from "./Callable.js";
  * and delete this components with a associated event listener.
  * 
  * @class BaseComponent
- * @version 1.3
+ * @version 1.4
  * @since 1.0
  */
 abstract class BaseComponent
@@ -88,6 +88,16 @@ abstract class BaseComponent
      * @since 1.0
      */
     abstract removeComponent(component:Object):void;
+
+    /**
+     * Delete your component and callback without duration and do not call the event listener
+     * 
+     * @param component the specified component at deleted
+     * @type {void}
+     * @version 1.0
+     * @since 1.4
+     */
+    abstract removeComponentAndCallback(component:Object):void;
 
     protected callback:Callback;
 
@@ -204,7 +214,7 @@ interface Callback
  * and delete this components with a associated event listener.
  * 
  * @class Component
- * @version 1.2
+ * @version 1.3
  * @since 1.0
  */
 export class Component extends BaseComponent
@@ -249,6 +259,12 @@ export class Component extends BaseComponent
 
     public removeComponent(component:Object):void
     {
+        this.remove(component, false);
+    }
+
+    public removeComponentAndCallback(component:Object):void
+    {
+        this.message = null;
         this.remove(component, false);
     }
 
