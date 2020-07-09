@@ -1,9 +1,9 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-07-09 04:56:44
+ * @ Modified on: 2020-07-09 05:00:11
  * 
- * @version 1.4
+ * @version 1.5
  */
 
 /**
@@ -215,7 +215,7 @@ interface Callback
  * and delete this components with a associated event listener.
  * 
  * @class Component
- * @version 1.3
+ * @version 1.5
  * @since 1.0
  */
 export class Component extends BaseComponent
