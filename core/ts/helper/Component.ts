@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-07-07 20:48:47
+ * @ Modified on: 2020-07-09 04:56:44
  * 
  * @version 1.4
  */
@@ -186,10 +186,9 @@ export class IMessage implements Message
 
 /**
  * The Callback interface allows to you have a return of event
- * with the (#method putComponent), 
- * (#method sendMessage), 
- * (#method putComponentDelayed), 
- * (#method sendMessageDelayed) methods.
+ * with the (#method Component.sendMessage), 
+ * (#method Component.sendMessageDelayed),  
+ * (#method Component.putComponentDelayed) methods.
  * 
  * @class Callback
  * @version 1.0
@@ -198,7 +197,9 @@ export class IMessage implements Message
 interface Callback
 {
     /**
-     * This method is called at a component is put or send
+     * This method is called at a component is deleted by the (#method Component.sendMessage), 
+     * (#method Component.sendMessageDelayed),  
+     * (#method Component.putComponentDelayed) methods.
      * 
      * @type {void}
      * @since 1.0
@@ -265,6 +266,7 @@ export class Component extends BaseComponent
     public removeComponentAndCallback(component:Object):void
     {
         this.message = null;
+        this.callback = null;
         this.remove(component, false);
     }
 
