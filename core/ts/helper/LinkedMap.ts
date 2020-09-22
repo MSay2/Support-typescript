@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-04 05:54:17
- * @ Modified on: 2020-09-22 07:20:29
+ * @ Modified on: 2020-09-22 07:46:57
  * 
  * @version 1.8
  */
@@ -444,16 +444,20 @@ export class LinkedMap extends Map
     {
         if (this.size >= this.MAXIMUM_CAPACITY)
         {
-            throw new MaximumCapacityException(this.PREFIX_EXCEPTION + "You have reached the maximum capacity of elements of the map. You have not permission to add a new value in the map.");
+            throw new MaximumCapacityException(`${this.PREFIX_EXCEPTION}You have reached the maximum capacity of elements of the map. You have not permission to add a new value in the map.`);
         }
         
         if (!Argument.isString(key))
         {
-            throw new ObjectCastException(this.PREFIX_EXCEPTION + "The key must always be a string.");
+            throw new ObjectCastException(`${this.PREFIX_EXCEPTION}The key must always be a string.`);
         }
         if (UString.isEmpty(key))
         {
-            throw new NullPointerException(this.PREFIX_EXCEPTION + "You cannot add a new value if the key is null or empty.");
+            throw new NullPointerException(`${this.PREFIX_EXCEPTION}You cannot add a new value if the key is null or empty.`);
+        }
+        if (this.checkIfKeyExist(key) >= 0)
+        {
+            throw new IllegalArgumentException(`${this.PREFIX_EXCEPTION}The key ${key} already exists in the map.`);
         }
         this.keys[this.size] = key;
         this.values[this.size] = value;
@@ -476,7 +480,7 @@ export class LinkedMap extends Map
         {
             if (!Argument.isOf(map, "LinkedMap"))
             {
-                throw new ObjectCastException(this.PREFIX_EXCEPTION + map.constructor.name + " is not an instance of LinkedMap");
+                throw new ObjectCastException(`${this.PREFIX_EXCEPTION}${map.constructor.name} is not an instance of LinkedMap`);
             }
             
             let size:number = map.length();
@@ -522,7 +526,7 @@ export class LinkedMap extends Map
         }
         else
         {
-            throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "The key `"+key+"` Does not exist in the map.");
+            throw new IllegalArgumentException(`${this.PREFIX_EXCEPTION}The key ${key} Does not exist in the map.`);
         }
     }
 
@@ -553,7 +557,7 @@ export class LinkedMap extends Map
         }
         else
         {
-            throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "The key `"+key+"` Does not exist in the map.");
+            throw new IllegalArgumentException(`${this.PREFIX_EXCEPTION}The key ${key} Does not exist in the map.`);
         }
     }
 
