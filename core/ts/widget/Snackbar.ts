@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-05-23 18:04:47
- * @ Modified on: 2020-07-07 20:50:41
+ * @ Modified on: 2020-09-22 07:28:27
  * 
  * @version 1.4
  * 
@@ -12,7 +12,7 @@
  */
 
 /**
- * Copyright (c) 2020 MSay2 - Snackbar.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - Snackbar.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@
  * limitations under the License.
  */
 
-import { ObjectCastException, IllegalArgumentException } from "../helper/Exceptions.js";
 import { Argument } from "../helper/Argument.js";
 import { Callable } from "../helper/Callable.js";
-import { StringUtils } from "../helper/Utils.js";
-import { Component, Message, IMessage } from "../helper/Component.js";
+import { Component, IMessage, Message } from "../helper/Component.js";
+import { IllegalArgumentException, ObjectCastException } from "../helper/Exceptions.js";
 import { OnClickListener } from "../helper/OnClickListener.js";
 import { RegularExpressions } from "../helper/RegularExpressions.js";
 import { Scrollable } from "../helper/Scrollable.js";
+import { UString } from "../helper/Utils.js";
 
 enum DismissEvent
 {
@@ -460,6 +460,11 @@ abstract class BaseSnackbar<B extends BaseSnackbar<B>>
 /**
  * Snackbar is a way to have a small message at bottom of screen.
  * 
+ * The project Snackbar is support of compatibility for web.
+ * 
+ * This project retake the Snackbar of the application Pexpe (on Google Play Store) who 
+ * retake it of my other project (#MaterialThemeSupportSnackbar) {@link https://github.com/MSay2/MaterialThemeSupportSnackbar}.
+ * 
  * @class Snackbar
  * @version 2.0
  * @since 1.0
@@ -533,11 +538,11 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     public static DISMISS_EVENT_CONSECUTIVE:number = DismissEvent.DISMISS_EVENT_CONSECUTIVE;
 
     /**
-     * Default constructor
+     * Default constructor.
      * 
-     * Init a new token snack-bar
+     * Init a new token snack-bar.
      * 
-     * @param parent primary parent (example document.body)
+     * @param parent primary parent (example document.body).
      * @since 1.0
      */
     public constructor(parent:HTMLElement)
@@ -546,12 +551,12 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Init a new token snack-bar
+     * Init a new token snack-bar.
      * 
-     * @param parent primary parent (example document.body)
-     * @param message Your message
-     * @param duration Your custom duration in millisecondes. you can use the pre-installed duration (#code Snackbar.LENGTH_LONG), (#code Snackbar.LENGTH_SHORT) (#code Snackbar.LENGTH_INDEFINITE)
-     * @returns return Snackbar class
+     * @param parent primary parent (example document.body).
+     * @param message Your message.
+     * @param duration Your custom duration in millisecondes. you can use the pre-installed duration (#code Snackbar.LENGTH_LONG), (#code Snackbar.LENGTH_SHORT) (#code Snackbar.LENGTH_INDEFINITE).
+     * @returns return Snackbar class.
      * @type {Snackbar}
      * @since 1.0
      */
@@ -565,10 +570,10 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Set a event listener
+     * Set a event listener.
      * 
-     * @param callback The event listener of snackbar
-     * @returns return Snackbar class
+     * @param callback The event listener of snackbar.
+     * @returns return Snackbar class.
      * @type {Snackbar}
      * @since 1.3
      */
@@ -582,12 +587,12 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Init a duration
+     * Init a duration.
      * 
-     * Use custom duration or use the pre-installed duration (#code Snackbar.LENGTH_LONG), (#code Snackbar.LENGTH_SHORT) (#code Snackbar.LENGTH_INDEFINITE)
+     * Use custom duration or use the pre-installed duration (#code Snackbar.LENGTH_LONG), (#code Snackbar.LENGTH_SHORT) (#code Snackbar.LENGTH_INDEFINITE).
      * 
-     * @param duration your custom duration in millisecondes
-     * @returns return Snackbar class
+     * @param duration your custom duration in millisecondes.
+     * @returns return Snackbar class.
      * @type {Snackbar}
      * @since 1.0
      */
@@ -602,10 +607,10 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Set a message
+     * Set a message.
      * 
-     * @param message Your message
-     * @returns return Sncakbar class
+     * @param message Your message.
+     * @returns return Sncakbar class.
      * @since 1.0
      */
     public setText(message:string):Snackbar
@@ -614,7 +619,7 @@ export class Snackbar extends BaseSnackbar<Snackbar>
         {
             throw new ObjectCastException(this.PREFIX_EXCEPTION + "The argument in the `setText` method should be a String.");
         }
-        if (!StringUtils.isEmpty(message))
+        if (!UString.isEmpty(message))
         {
             let messageView:HTMLParagraphElement = this.getMessageView();
             messageView.innerHTML = message;
@@ -623,10 +628,10 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Set a text color of your message
+     * Set a text color of your message.
      * 
-     * @param color Your custom color (syntax RGB, RGBA, HSL, HSLA HEXADECIMAL)
-     * @returns return Snackbar class
+     * @param color Your custom color (syntax RGB, RGBA, HSL, HSLA HEXADECIMAL).
+     * @returns return Snackbar class.
      * @type {Snackbar}
      * @since 1.0
      */
@@ -636,7 +641,7 @@ export class Snackbar extends BaseSnackbar<Snackbar>
         {
             throw new ObjectCastException(this.PREFIX_EXCEPTION + "The argument in the `setTextColor` method should be a String.");
         }
-        if (!StringUtils.isEmpty(color))
+        if (!UString.isEmpty(color))
         {
             let messageView = this.getMessageView();
             if (!(new RegExp(RegularExpressions.RGB).test(color)) && !(new RegExp(RegularExpressions.RGBA).test(color)) && !(new RegExp(RegularExpressions.HSL).test(color)) && !(new RegExp(RegularExpressions.HSLA).test(color)) && !(new RegExp(RegularExpressions.HEXADECIMAL).test(color)))
@@ -649,11 +654,11 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Set the button snackbar and init a text and click event
+     * Set the button snackbar and init a text and click event.
      * 
-     * @param text The text of button snackbar
-     * @param listener Init an event listener on click event
-     * @returns return Snackbar class
+     * @param text The text of button snackbar.
+     * @param listener Init an event listener on click event.
+     * @returns return Snackbar class.
      * @type {Snackbar}
      * @since 1.0
      */
@@ -663,7 +668,7 @@ export class Snackbar extends BaseSnackbar<Snackbar>
         {
             throw new ObjectCastException(this.PREFIX_EXCEPTION + "The argument in the `setAction` method should be a String.");
         }
-        if (!StringUtils.isEmpty(text))
+        if (!UString.isEmpty(text))
         {
             let actionView:HTMLButtonElement = this.getActionView();
             let actionViewMessage:HTMLElement = this.getActionViewMessage();
@@ -676,7 +681,7 @@ export class Snackbar extends BaseSnackbar<Snackbar>
                 {
                     setTimeout(() => {
                         this.dispatchDismiss(DismissEvent.DISMISS_EVENT_ACTION);
-                        listener.onClick();
+                        listener.onClick(actionView);
                     }, 100);
                 });
             }
@@ -685,10 +690,10 @@ export class Snackbar extends BaseSnackbar<Snackbar>
     }
 
     /**
-     * Set a text color of button
+     * Set a text color of button.
      * 
-     * @param color text color of button
-     * @returns return Snackbar
+     * @param color text color of button.
+     * @returns return Snackbar.
      * @type {Snackbar}
      * @since 1.0
      */
@@ -698,7 +703,7 @@ export class Snackbar extends BaseSnackbar<Snackbar>
         {
             throw new ObjectCastException(this.PREFIX_EXCEPTION + "The argument in the `setActionTextColor` method should be a String.");
         }
-        if (!StringUtils.isEmpty(color))
+        if (!UString.isEmpty(color))
         {
             let actionView:HTMLButtonElement = this.getActionView();
             if (!(new RegExp(RegularExpressions.RGB).test(color)) && !(new RegExp(RegularExpressions.RGBA).test(color)) && !(new RegExp(RegularExpressions.HSL).test(color)) && !(new RegExp(RegularExpressions.HSLA).test(color)) && !(new RegExp(RegularExpressions.HEXADECIMAL).test(color)))

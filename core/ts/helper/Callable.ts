@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 10:49:40
- * @ Modified on: 2020-07-04 23:58:42
+ * @ Modified on: 2020-09-22 07:19:21
  * 
  * @version 1.0
  */
 
 /**
- * Copyright (c) 2020 MSay2 - Callable.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - Callable.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

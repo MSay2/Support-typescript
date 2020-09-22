@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-01 23:48:31
- * @ Modified on: 2020-06-29 22:02:03
+ * @ Modified on: 2020-09-22 07:11:56
  * 
  * @version 1.3
  */
@@ -48,6 +48,7 @@ export interface Callback
 /**
  * The Inflater class is a tool for inflated your layout.
  * 
+ * @deprecated
  * @class Inflater
  * @version 1.4
  * @since 1.0
