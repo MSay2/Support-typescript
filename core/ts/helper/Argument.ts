@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Modified on: 2020-05-27 14:39:02
- * @ Modified on: 2020-07-04 23:59:59
+ * @ Modified on: 2020-09-22 07:19:09
  * 
  * @version 1.3
  */
 
 /**
- * Copyright (c) 2020 MSay2 - Argument.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - Argument.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

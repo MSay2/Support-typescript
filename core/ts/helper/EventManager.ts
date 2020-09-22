@@ -1,11 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-21 10:01:08
- * @ Modified on: 2020-07-04 23:44:18
+ * @ Modified on: 2020-09-22 07:19:53
+ * 
+ * @version 1.0
  */
 
 /**
- * Copyright (c) 2020 MSay2 - EventManager
+ * Copyright (c) 2020 MSay2, Yoann Meclot - EventManager
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

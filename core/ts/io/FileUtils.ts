@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 10:35:27
- * @ Modified on: 2020-07-04 23:54:28
+ * @ Modified on: 2020-09-22 07:25:11
  * 
- * @version 1.0
+ * @version 1.1
  */
 
 /**
- * Copyright (c) 2020 MSay2 - FileUtils.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - FileUtils.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@
  * limitations under the License.
  */
 
-import { StringUtils } from "../helper/Utils.js";
+import { UString } from "../helper/Utils.js";
 
 /**
  * This utility is a mean for contains methods for the Files.
  * 
  * @class FileUtils
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 export class FileUtils
@@ -66,7 +66,7 @@ export class FileUtils
      */
     public static removeExtension(name:string):string
     {
-        if (!StringUtils.isEmpty(name))
+        if (!UString.isEmpty(name))
         {
             return name.replace(name.substring(name.lastIndexOf("."), name.length), "");
         }

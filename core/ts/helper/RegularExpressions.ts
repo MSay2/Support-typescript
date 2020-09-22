@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-27 15:34:06
- * @ Modified on: 2020-07-04 23:41:41
+ * @ Modified on: 2020-09-22 07:20:58
  * 
  * @version 1.2
  */
 
 /**
- * Copyright (c) 2020 MSay2 - RegularExpressions.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - RegularExpressions.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

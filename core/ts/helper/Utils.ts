@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on:  2020-06-01 10:01:09
- * @ Modified on: 2020-07-04 23:46:16
+ * @ Modified on: 2020-09-22 07:22:02
  * 
- * @version 1.4
+ * @version 1.5
  */
 
 /**
- * Copyright (c) 2020 MSay2 - StringUtils.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - Utils.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@
  */
 
 /**
- * The StringUtils class is a utility for String argument
+ * The UString class is a utility for String argument
  * 
- * @class StringUtils
- * @version 1.4
+ * @class UString
+ * @version 1.5
  * @since 1.0
  */
-export class StringUtils
+export class UString
 {
     /**
      * Check if the value is null or empty
@@ -55,25 +55,7 @@ export class StringUtils
      */
     public static contains(arg:string, value:string):boolean
     {
-        return arg.indexOf(value) >- 1;
-    }
-
-    /**
-     * Check if the arguments its equals
-     * 
-     * @param arg1 the argument to check
-     * @param arg2 other argument to check
-     * @returns return true if the arguments its equals
-     * @type {boolean}
-     * @since 1.4
-     */
-    public static equals(arg1:string, arg2:string):boolean
-    {
-        if (arg1 == null || arg2 == null)
-        {
-            return false;
-        }
-        return arg1 == arg2;
+        return arg.indexOf(value) >= 0;
     }
 
     /**

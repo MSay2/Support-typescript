@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-06-04 05:54:17
- * @ Modified on: 2020-07-04 23:41:56
+ * @ Modified on: 2020-09-22 07:20:29
  * 
- * @version 1.5
+ * @version 1.8
  */
 
 /**
- * Copyright (c) 2020 MSay2 - LinkedMap.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - LinkedMap.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,10 +22,11 @@
  * limitations under the License.
  */
 
-import {NullPointerException, IllegalArgumentException, ObjectCastException, MaximumCapacityException} from "./Exceptions.js";
+import { Argument } from "./Argument.js";
+import { IllegalArgumentException, MaximumCapacityException, NullPointerException, ObjectCastException } from "./Exceptions.js";
+import { UString } from "./Utils.js";
+import { StringBuilder } from "./StringBuilder.js";
 
-import {StringUtils} from "./Utils.js";
-import {Argument} from "./Argument.js";
 
 /**
  * The Entry class is a mean to log a key associated with its value.
@@ -34,38 +35,11 @@ import {Argument} from "./Argument.js";
  * and thus obtain each key and value in a loop.
  * 
  * @class Entry<K,V>
- * @version 1.1
+ * @version 1.2
  * @since 1.4
  */
 abstract class Entry<K, V>
 {
-    /**
-     * Show the size of the map
-     * 
-     * @return return the size of the map
-     * @type {number}
-     * @since 1.1
-     */
-    readonly size:number;
-
-    /**
-     * Show all keys of the map
-     * 
-     * @return return the all keys of the map
-     * @type {String[]}
-     * @since 1.0
-     */
-    readonly keys:K[];
-
-    /**
-     * Show all values of the map
-     * 
-     * @return return the values of the map
-     * @type {Object[]}
-     * @since 1.0
-     */
-    readonly values:V[];
-
     /**
      * Get the key of the map
      * 
@@ -81,6 +55,22 @@ abstract class Entry<K, V>
      * @since 1.0
      */
     public abstract getValue():V;
+
+    /**
+     * Check if the indexing return to the last position.
+     * 
+     * @returns {boolean} return true if the indexing is placed to the last position.
+     * @since 1.5
+     */
+    public abstract isLastData():boolean;
+
+    /**
+     * Check if the indexing return to the first position.
+     * 
+     * @returns {boolean} return true is the indexing is placed to the first position.
+     * @since 1.5
+     */
+    public abstract isFirstData():boolean;
 }
 
 /**
@@ -91,7 +81,7 @@ abstract class Entry<K, V>
  * 
  * @class EntryIterable
  * @implements {Iterable}
- * @version 1.0
+ * @version 1.1
  * @since 1.5
  */
 class EntryIterable implements Iterable<Entry<String, Object>>
@@ -101,11 +91,11 @@ class EntryIterable implements Iterable<Entry<String, Object>>
     private index:number = -1;
     private size:number = 0;
 
-    public constructor(entry:Entry<String, Object>)
+    public constructor(keys:String[], values:Object[], size:number)
     {
-        this.size = entry.size;
-        this.keys = entry.keys;
-        this.values = entry.values;
+        this.size = size;
+        this.keys = keys;
+        this.values = values;
     }
 
     [Symbol.iterator]():Iterator<Entry<String, Object>, any, undefined>
@@ -118,18 +108,18 @@ class EntryIterable implements Iterable<Entry<String, Object>>
                 {
                     return {
                         value: {
-                            size: this.size,
-                            keys: this.keys,
-                            values: this.values,
-
-                            getKey:function()
+                            getKey:() => this.keys[this.index],
+                            getValue:() => this.values[this.index],
+                            isLastData:() =>
                             {
-                                return this.keys[this.index];
-                            }.bind(this),
-                            getValue:function()
+                                if (this.index == this.size -1) return true;
+                                return false;
+                            },
+                            isFirstData:() =>
                             {
-                                return this.values[this.index];
-                            }.bind(this)
+                                if (this.index == 0) return true;
+                                return false;
+                            }
                         },
                         done: false
                     };
@@ -159,7 +149,7 @@ export abstract class MapType
      * @type {number}
      * @since 1.0
      */
-    public static TYPE_KEYS = -1;
+    public static TYPE_KEYS:number = -1;
 
     /**
      * Reverse only values
@@ -168,7 +158,7 @@ export abstract class MapType
      * @type {number}
      * @since 1.0
      */
-    public static TYPE_VALUES = -2;
+    public static TYPE_VALUES:number = -2;
 }
 
 /**
@@ -199,7 +189,7 @@ export abstract class Map
      * @type {boolean}
      * @since 1.0
      */
-    abstract exist(value:Object):boolean;
+    abstract contains(value:Object):boolean;
 
     /**
      * Return the key of the finded occurrence in the map 
@@ -299,6 +289,17 @@ export abstract class Map
     abstract clear():void;
 
     /**
+     * Clear the map
+     * 
+     * Remove all keys and values
+     * To avoid memory leaks
+     * 
+     * @type {void}
+     * @since 1.0
+     */
+    abstract clearMemory():void
+
+    /**
      * Check if the map is empty
      * 
      * @return return true if the map is empty and return false if the map is not empty
@@ -384,12 +385,41 @@ export class LinkedMap extends Map
     private PREFIX_EXCEPTION:string = "LinkedMap: ";
     private MAXIMUM_CAPACITY:number = 1 << 30;
 
+    public constructor()
+    {
+        super();
+    }
+
+    /**
+     * Init a new object Map of your object.
+     * 
+     * @param object Your primitive object.
+     * @returns Return the newest map.
+     * @type {Map}
+     * @since 1.7
+     */
+    public static fromObject(object:{}):Map
+    {
+        let obj = object;
+        if (obj == null)
+        {
+            return new LinkedMap();
+        }
+
+        let map:Map = new LinkedMap();
+        for (let key in obj)
+        {
+            map.add(key, obj[key]);
+        }
+        return map;
+    }
+
     public length():number
     {
         return this.size;
     }
 
-    public exist(value:Object):boolean
+    public contains(value:Object):boolean
     {
         return this.indexOf(value) >= 0;
     }
@@ -421,13 +451,9 @@ export class LinkedMap extends Map
         {
             throw new ObjectCastException(this.PREFIX_EXCEPTION + "The key must always be a string.");
         }
-        if (StringUtils.isEmpty(key))
+        if (UString.isEmpty(key))
         {
             throw new NullPointerException(this.PREFIX_EXCEPTION + "You cannot add a new value if the key is null or empty.");
-        }
-        if (this.checkIfKeyExist(key) >= 0)
-        {
-            throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "The key `"+key+"` already exists in the map.");
         }
         this.keys[this.size] = key;
         this.values[this.size] = value;
@@ -533,8 +559,20 @@ export class LinkedMap extends Map
 
     public clear():void
     {
+        for (let i:number = 0; i < this.size; i++)
+        {
+            this.keys[i] = null;
+            this.values[i] = null;
+        }
+        this.size = 0;
         this.keys = [];
         this.values = [];
+    }
+
+    public clearMemory():void
+    {
+        this.keys.length = 0;
+        this.values.length = 0;
         this.size = 0;
     }
 
@@ -545,15 +583,7 @@ export class LinkedMap extends Map
 
     public entries():Iterable<Entry<String, Object>>
     {
-        let iterable:Iterable<Entry<String, Object>> = new EntryIterable({
-            size: this.size,
-            values: this.values,
-            keys: this.keys,
-            
-            getKey:function(){return "key";},
-            getValue:function(){return "value";}
-        });
-        return iterable;
+        return new EntryIterable(this.keys, this.values, this.size);
     }
 
     public reverse(type?:number):void
@@ -581,7 +611,6 @@ export class LinkedMap extends Map
                 this.keys = otherKeys;
                 this.values = otherValues;
             }
-
             otherKeys = null;
             otherValues = null;
         }
@@ -589,47 +618,49 @@ export class LinkedMap extends Map
 
     public toString():string
     {
-        let prefixArray:string = "[";
-        let suffixArray:string = "]";
-        let arrayToString:string = "";
-        for (let i:number = 0; i < this.size; i++)
+        let builder:StringBuilder = new StringBuilder();
+        builder.append("[");
+        for (let entry of this.entries())
         {
-            if (Argument.isPrimitive(this.values[i]))
+            let key:string = <string>entry.getKey();
+            let value:Object = <Object>entry.getValue();
+
+            if (Argument.isPrimitive(value))
             {
-                arrayToString += "\""+this.keys[i]+"\" => \""+this.values[i]+"\",";
+                builder.append(`"${key}" => "${value}"`).append((entry.isLastData() ? "" : ","));
             }
             else
             {
-                arrayToString += "\""+this.keys[i]+"\" => \""+this.values[i].constructor.name+"\",";
+                builder.append(`"${key}" => "${value.constructor.name}"`).append((entry.isLastData() ? "" : ","));
             }
         }
-        return prefixArray + ((StringUtils.removeLastChar(arrayToString) == null) ? "" : StringUtils.removeLastChar(arrayToString)) + suffixArray;
+        return builder.append("]").toString();
     }
 
     public toJSON():string
     {
-        let prefixArray:string = "{";
-        let suffixArray:string = "}";
-        let arrayToJSON:string = "";
-        for (let i:number = 0; i < this.size; i++)
+        let builder:StringBuilder = new StringBuilder();
+        builder.append("{");
+        for (let entry of this.entries())
         {
-            if (Argument.isPrimitive(this.values[i]))
+            let key:string = <string>entry.getKey();
+            let value:Object = <Object>entry.getValue();
+
+            if (!Argument.isPrimitive(value))
             {
-                if (Argument.isString(this.values[i]))
-                {
-                    arrayToJSON += "\""+this.keys[i]+"\": \""+this.values[i]+"\",";
-                }
-                else
-                {
-                    arrayToJSON += "\""+this.keys[i]+"\":"+this.values[i]+",";
-                }
+                throw new IllegalArgumentException(`${this.PREFIX_EXCEPTION}Your map contain an object. The JSON format can contain only primitive values [Float, Integer, Boolean, String].`);
+            }
+
+            if (Argument.isString(value))
+            {
+                builder.append(`"${key}": "${value}"`).append((entry.isLastData() ? "" : ","));
             }
             else
             {
-                throw new IllegalArgumentException(this.PREFIX_EXCEPTION + "Your map contain an object. The JSON format can contain only primitive values [Float, Integer, Boolean, String].");
+                builder.append(`"${key}": ${value}`).append((entry.isLastData() ? "" : ","));
             }
         }
-        return prefixArray + ((StringUtils.removeLastChar(arrayToJSON) == null) ? "" : StringUtils.removeLastChar(arrayToJSON)) + suffixArray;
+        return builder.append("}").toString();
     }
 
     /**

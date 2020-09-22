@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-24 08:54:59
- * @ Modified on: 2020-07-09 05:00:11
+ * @ Modified on: 2020-09-22 07:22:35
  * 
  * @version 1.5
  */
 
 /**
- * Copyright (c) 2020 MSay2 - Component.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - Component.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

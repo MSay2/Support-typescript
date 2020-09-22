@@ -1,13 +1,13 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-05-25 10:35:10
- * @ Modified on: 2020-07-04 23:41:48
+ * @ Modified on: 2020-09-22 07:21:00
  * 
  * @version 1.2
  */
 
 /**
- * Copyright (c) 2020 MSay2 - OnClickListener.ts
+ * Copyright (c) 2020 MSay2, Yoann Meclot - OnClickListener.ts
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,10 @@
  * On click listener event
  * 
  * @class OnClickListener
- * @version 1.2
+ * @version 1.3
  * @since 1.0
  */
 export interface OnClickListener
 {
-    onClick():void;
+    onClick(view:HTMLElement):void;
 }
