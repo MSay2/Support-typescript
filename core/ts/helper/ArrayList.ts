@@ -1,7 +1,7 @@
 /**
  * @ Author: Yoann Meclot. MSay2
  * @ Created on: 2020-07-13 08:20:15
- * @ Modified on: 2020-09-22 07:38:50
+ * @ Modified on: 2020-09-22 07:51:11
  * 
  * @version 1.8
  */
@@ -272,7 +272,7 @@ export abstract class List<B>
 }
 
 /**
- * This class allows you to create and join your internal array in the ArrayList class.
+ * This class allows you to create and join your primitive array in the ArrayList class.
  * 
  * @class Arrays
  * @version 1.0
@@ -281,9 +281,9 @@ export abstract class List<B>
 export class Arrays
 {
     /**
-     * Create and join your internal array in the ArrayList class.
+     * Create and join your primitive array in the ArrayList class.
      * 
-     * @param array Corresponding to your intern array.
+     * @param array Corresponding to your primitive array.
      * @type {List<B>}
      * @since 1.0
      */
